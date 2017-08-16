@@ -45,7 +45,7 @@ public class FinancialTransferSchedulingService {
             transfer.setRegistrationDate(LocalDate.now());
 
             try{
-                if(scheduleDate != null && !StringUtils.isEmpty(scheduleDate)){
+                if(!StringUtils.isEmpty(scheduleDate)){
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate date = LocalDate.parse(scheduleDate, formatter);
                     transfer.setScheduleDate(date);
@@ -56,7 +56,7 @@ public class FinancialTransferSchedulingService {
             }
 
             try {
-                if(transferType!= null && !StringUtils.isEmpty(transferType))
+                if(!StringUtils.isEmpty(transferType))
                     transfer.setTransferType(TransferType.valueOf(transferType));
             }catch (Exception e){
                 message.setSuccess(false);
@@ -89,17 +89,17 @@ public class FinancialTransferSchedulingService {
 
     private void validateSchedule(FinancialTransferScheduling financialTransferScheduling, Message message) {
         List<InputMessage> listInputMessages = new ArrayList<>();
-        if(financialTransferScheduling.getOriginAccount() == null || StringUtils.isEmpty(financialTransferScheduling.getOriginAccount()))
+        if(StringUtils.isEmpty(financialTransferScheduling.getOriginAccount()))
             listInputMessages.add(new InputMessage("originAccount","Necessário informar a conta de origem"));
         else if(financialTransferScheduling.getOriginAccount().length() < 7 || !financialTransferScheduling.getOriginAccount().contains("-"))
                 listInputMessages.add(new InputMessage("originAccount","O número da conta deve estar no padrão XXXXX-X"));
 
-        if(financialTransferScheduling.getDestinationAccount() == null || StringUtils.isEmpty(financialTransferScheduling.getDestinationAccount()))
+        if(StringUtils.isEmpty(financialTransferScheduling.getDestinationAccount()))
             listInputMessages.add(new InputMessage("destinationAccount","Necessário informar a conta de destino"));
         else if(financialTransferScheduling.getDestinationAccount().length() < 7 || !financialTransferScheduling.getDestinationAccount().contains("-"))
             listInputMessages.add(new InputMessage("destinationAccount","O número da conta deve estar no padrão XXXXX-X"));
 
-        if((financialTransferScheduling.getScheduleDate() == null || StringUtils.isEmpty(financialTransferScheduling.getScheduleDate())) && message.getInputMessages().stream().filter(inputMessage -> inputMessage.inputName.equalsIgnoreCase("scheduleDate")).count() == 0)
+        if(financialTransferScheduling.getScheduleDate() == null && message.getInputMessages().stream().filter(inputMessage -> inputMessage.inputName.equalsIgnoreCase("scheduleDate")).count() == 0)
             listInputMessages.add(new InputMessage("scheduleDate","Necessário informar a data da transferência"));
         else if(financialTransferScheduling.getScheduleDate() != null && financialTransferScheduling.getScheduleDate().isBefore(LocalDate.now()))
             listInputMessages.add(new InputMessage("scheduleDate","A data para transferência deve ser superior a hoje"));
@@ -107,7 +107,7 @@ public class FinancialTransferSchedulingService {
         if(financialTransferScheduling.getValue() == null || financialTransferScheduling.getValue().compareTo(new BigDecimal(0)) <= 0)
             listInputMessages.add(new InputMessage("value","Necessário informar o valor da transferência"));
 
-        if((financialTransferScheduling.getTransferType() == null || StringUtils.isEmpty(financialTransferScheduling.getTransferType())) && message.getInputMessages().stream().filter(inputMessage -> inputMessage.inputName.equalsIgnoreCase("transferType")).count() == 0)
+        if(financialTransferScheduling.getTransferType() == null && message.getInputMessages().stream().filter(inputMessage -> inputMessage.inputName.equalsIgnoreCase("transferType")).count() == 0)
             listInputMessages.add(new InputMessage("transferType","Necessário informar o tipo da transferência"));
 
         if(!listInputMessages.isEmpty()) {

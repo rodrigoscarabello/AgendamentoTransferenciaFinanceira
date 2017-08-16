@@ -35,6 +35,11 @@ informações:
     
 3 - O usuário deve poder ver todos os agendamentos cadastrados.
 
+## Requisitos
+
+- Ter instalado JDK 8.
+- Importar o pom.xml em uma IDE, como IntelliJ IDEA ou Eclipse, o projeto utilizando "Maven Projects"
+
 ## Acesso a aplicação
 
 - Para acesso a aplicação local, basta utilizar a url http://localhost:8080
