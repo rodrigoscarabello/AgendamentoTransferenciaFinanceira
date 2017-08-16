@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -25,7 +24,7 @@ import java.time.format.DateTimeFormatter;
 public class FinancialTransferSchedulingControllerTest {
 
     private static final String RETURN_JSON_TRANSFER_TYPE_LIST = "[\"A\", \"B\", \"C\", \"D\"]";
-    private static final String RETURN_JSON_TRANSFER_LIST = "[{\"id\":1,\"originAccount\":\"12345-6\",\"destinationAccount\":\"12345-6\",\"value\":100,\"fee\":5.00,\"scheduleDate\":{\"year\":2017,\"month\":\"OCTOBER\",\"monthValue\":10,\"era\":\"CE\",\"dayOfMonth\":1,\"dayOfWeek\":\"SUNDAY\",\"dayOfYear\":274,\"leapYear\":false,\"chronology\":{\"id\":\"ISO\",\"calendarType\":\"iso8601\"}},\"registrationDate\":{\"year\":2017,\"month\":\"AUGUST\",\"monthValue\":8,\"era\":\"CE\",\"dayOfMonth\":16,\"dayOfWeek\":\"WEDNESDAY\",\"dayOfYear\":228,\"leapYear\":false,\"chronology\":{\"id\":\"ISO\",\"calendarType\":\"iso8601\"}},\"transferType\":\"A\"},{\"id\":11,\"originAccount\":\"12345-6\",\"destinationAccount\":\"12345-6\",\"value\":100,\"fee\":5.00,\"scheduleDate\":{\"year\":2017,\"month\":\"OCTOBER\",\"monthValue\":10,\"era\":\"CE\",\"dayOfMonth\":1,\"dayOfWeek\":\"SUNDAY\",\"dayOfYear\":274,\"leapYear\":false,\"chronology\":{\"id\":\"ISO\",\"calendarType\":\"iso8601\"}},\"registrationDate\":{\"year\":2017,\"month\":\"AUGUST\",\"monthValue\":8,\"era\":\"CE\",\"dayOfMonth\":16,\"dayOfWeek\":\"WEDNESDAY\",\"dayOfYear\":228,\"leapYear\":false,\"chronology\":{\"id\":\"ISO\",\"calendarType\":\"iso8601\"}},\"transferType\":\"A\"}]";
+    private static final String RETURN_JSON_TRANSFER_LIST = "[{\"id\":1,\"originAccount\":\"12345-6\",\"destinationAccount\":\"12345-6\",\"value\":100,\"fee\":5.00,\"scheduleDate\":{\"year\":2017,\"month\":\"OCTOBER\",\"monthValue\":10,\"era\":\"CE\",\"dayOfMonth\":1,\"dayOfWeek\":\"SUNDAY\",\"dayOfYear\":274,\"leapYear\":false,\"chronology\":{\"id\":\"ISO\",\"calendarType\":\"iso8601\"}},\"registrationDate\":{\"year\":2017,\"month\":\"AUGUST\",\"monthValue\":8,\"era\":\"CE\",\"dayOfMonth\":16,\"dayOfWeek\":\"WEDNESDAY\",\"dayOfYear\":228,\"leapYear\":false,\"chronology\":{\"id\":\"ISO\",\"calendarType\":\"iso8601\"}},\"transferType\":\"A\"}]";
     private static final String RETURN_JSON_SUCCESS_SCHEDULE_TRANSFER = "{\"success\":true,\"message\":\"Agendamento realizado com sucesso!\",\"inputMessages\":[]}";
     private static final String RETURN_JSON_FAIL_SCHEDULE_TRANSFER_NO_PARAMS = "{\"success\":false,\"message\":null,\"inputMessages\":[{\"inputName\":\"originAccount\",\"message\":\"Necessário informar a conta de origem\"},{\"inputName\":\"destinationAccount\",\"message\":\"Necessário informar a conta de destino\"},{\"inputName\":\"scheduleDate\",\"message\":\"Necessário informar a data da transferência\"},{\"inputName\":\"value\",\"message\":\"Necessário informar o valor da transferência\"},{\"inputName\":\"transferType\",\"message\":\"Necessário informar o tipo da transferência\"}]}";
     private static final String RETURN_JSON_FAIL_SCHEDULE_TRANSFER_NO_ORIGIN = "{\"success\":false,\"message\":null,\"inputMessages\":[{\"inputName\":\"originAccount\",\"message\":\"Necessário informar a conta de origem\"}]}";
@@ -205,7 +204,7 @@ public class FinancialTransferSchedulingControllerTest {
 
     @Test
     public void retrieveListSchedules() throws Exception {
-        financialTransferSchedulingService.scheduleTransfer("12345-6","12345-6",new BigDecimal(100),"01/10/2017","A");
+//        financialTransferSchedulingService.scheduleTransfer("12345-6","12345-6",new BigDecimal(100),"01/10/2017","A");
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/listSchedules").accept(MediaType.APPLICATION_JSON);
         MvcResult result = mvc.perform(requestBuilder).andReturn();
         System.out.println(result.getResponse().getContentAsString());

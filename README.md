@@ -37,8 +37,8 @@ informações:
 
 ## Requisitos
 
-- Ter instalado JDK 8.
-- Importar o pom.xml em uma IDE, como IntelliJ IDEA ou Eclipse, o projeto utilizando "Maven Projects"
+- Ter instalado JDK 8;
+- Importar em uma IDE, como IntelliJ IDEA ou Eclipse, o projeto utilizando "Maven Projects".
 
 ## Acesso a aplicação
 
@@ -47,8 +47,8 @@ informações:
 ## Especificações da arquitetura utilizada
 
 - IntelliJ IDEA como IDE;
-- Spring Boot versão 1.5.6.RELEASE devido a facilidade que o framework proporciona na criação de aplicações, pela convenção nas configurações e porque foi projetado para funcionar na sua forma mais simples.
-- React v15.6.1 por ser um framework moderno e que permite a criação de interfaces interativas através da componentização, deixando o código simples e reutilizável.
-- Foi utilizado novas classes e métodos do Java 8 para melhor escrita e performance.
-- Maven como ferramenta de Build.
+- Spring Boot versão 1.5.6.RELEASE devido a facilidade que o framework proporciona na criação de aplicações, pela convenção nas configurações e porque foi projetado para funcionar na sua forma mais simples;
+- React v15.6.1 por ser um framework moderno e que permite a criação de interfaces interativas através da componentização, deixando o código simples e reutilizável;
+- Foi utilizado novas classes e métodos do Java 8 para melhor escrita e performance;
+- Maven como ferramenta de Build;
 - Utilizado JUnit, Spring Boot Test, Mockito e JSONassert para a criação de testes unitários para validação de todos os dados de entrada e regras de negócio, abordando cenários previsiveis de erro, como falta de algum dado de entrada, e tratamentos específicos.
