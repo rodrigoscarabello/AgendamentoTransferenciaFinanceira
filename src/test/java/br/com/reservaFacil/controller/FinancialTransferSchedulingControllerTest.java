@@ -204,7 +204,6 @@ public class FinancialTransferSchedulingControllerTest {
 
     @Test
     public void retrieveListSchedules() throws Exception {
-//        financialTransferSchedulingService.scheduleTransfer("12345-6","12345-6",new BigDecimal(100),"01/10/2017","A");
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/listSchedules").accept(MediaType.APPLICATION_JSON);
         MvcResult result = mvc.perform(requestBuilder).andReturn();
         System.out.println(result.getResponse().getContentAsString());
