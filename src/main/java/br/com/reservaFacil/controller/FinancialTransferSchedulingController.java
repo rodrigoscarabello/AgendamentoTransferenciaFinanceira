@@ -1,6 +1,7 @@
 package br.com.reservaFacil.controller;
 
 import br.com.reservaFacil.model.FinancialTransferScheduling;
+import br.com.reservaFacil.model.Message;
 import br.com.reservaFacil.model.TransferType;
 import br.com.reservaFacil.service.FinancialTransferSchedulingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class FinancialTransferSchedulingController {
     private FinancialTransferSchedulingService financialTransferSchedulingService;
 
     @RequestMapping("/schedule")
-    public FinancialTransferScheduling scheduleTransfer(@RequestParam(value = "originAccount") String originAccount, @RequestParam(value = "destinationAccount") String destinationAccount,
-                                                        @RequestParam(value = "value") BigDecimal value, @RequestParam(value = "scheduleDate") String scheduleDate,
-                                                        @RequestParam(value = "transferType") String transferType) {
+    public Message scheduleTransfer(@RequestParam(value = "originAccount", required = false) String originAccount, @RequestParam(value = "destinationAccount", required = false) String destinationAccount,
+                                    @RequestParam(value = "value", required = false) BigDecimal value, @RequestParam(value = "scheduleDate", required = false) String scheduleDate,
+                                    @RequestParam(value = "transferType", required = false) String transferType) {
         return financialTransferSchedulingService.scheduleTransfer(originAccount, destinationAccount, value, scheduleDate, transferType);
     }
 

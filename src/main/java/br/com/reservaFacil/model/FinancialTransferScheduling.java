@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 public class FinancialTransferScheduling implements Serializable{
 
+    private long id;
     private String originAccount;
     private String destinationAccount;
     private BigDecimal value;
@@ -18,6 +19,10 @@ public class FinancialTransferScheduling implements Serializable{
         super();
         setRegistrationDate(LocalDate.now());
     }
+
+    public long getId() { return id; }
+
+    public void setId(long id) { this.id = id; }
 
     public String getOriginAccount() {
         return originAccount;

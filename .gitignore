@@ -17,3 +17,5 @@
 
 out/
 *.class
+.idea/
+agendamentoTransferenciaFinanceira.iml
