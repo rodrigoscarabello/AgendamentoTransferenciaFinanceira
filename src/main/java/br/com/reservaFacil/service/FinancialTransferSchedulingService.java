@@ -94,9 +94,9 @@ public class FinancialTransferSchedulingService {
         else if(financialTransferScheduling.getOriginAccount().length() < 7 || !financialTransferScheduling.getOriginAccount().contains("-"))
                 listInputMessages.add(new InputMessage("originAccount","O número da conta deve estar no padrão XXXXX-X"));
 
-        if(financialTransferScheduling.getOriginAccount() == null || StringUtils.isEmpty(financialTransferScheduling.getOriginAccount()))
+        if(financialTransferScheduling.getDestinationAccount() == null || StringUtils.isEmpty(financialTransferScheduling.getDestinationAccount()))
             listInputMessages.add(new InputMessage("destinationAccount","Necessário informar a conta de destino"));
-        else if(financialTransferScheduling.getOriginAccount().length() < 7 || !financialTransferScheduling.getOriginAccount().contains("-"))
+        else if(financialTransferScheduling.getDestinationAccount().length() < 7 || !financialTransferScheduling.getDestinationAccount().contains("-"))
             listInputMessages.add(new InputMessage("destinationAccount","O número da conta deve estar no padrão XXXXX-X"));
 
         if((financialTransferScheduling.getScheduleDate() == null || StringUtils.isEmpty(financialTransferScheduling.getScheduleDate())) && message.getInputMessages().stream().filter(inputMessage -> inputMessage.inputName.equalsIgnoreCase("scheduleDate")).count() == 0)
@@ -116,12 +116,12 @@ public class FinancialTransferSchedulingService {
         }
     }
 
-    private void calculateFee(FinancialTransferScheduling financialTransferScheduling) {
+    public void calculateFee(FinancialTransferScheduling financialTransferScheduling) {
         CalculationType calculationType = getCalculationTypeByTransferType(financialTransferScheduling);
         financialTransferScheduling.setFee(calculationType.calculateFee(financialTransferScheduling));
     }
 
-    private CalculationType getCalculationTypeByTransferType(FinancialTransferScheduling financialTransferScheduling) {
+    public CalculationType getCalculationTypeByTransferType(FinancialTransferScheduling financialTransferScheduling) {
         switch (financialTransferScheduling.getTransferType()) {
             case A: return transferTypeAService;
             case B: return transferTypeBService;

@@ -195,10 +195,6 @@ class ScheduleFinancialTransfer extends React.Component {
                         <Input id="scheduleDate" label="Data da transferência" className="datepicker"/>
                         <Input id="value" label="Valor"/>
                         <DivSelect id="transferType" label="Tipo de transferência"/>
-                        <div className="input-field col s6 l4">
-                            <input id="fee" type="text"/>
-                            <label htmlFor="fee">Taxa</label>
-                        </div>
                     </form>
                 </div>
             </Card>
